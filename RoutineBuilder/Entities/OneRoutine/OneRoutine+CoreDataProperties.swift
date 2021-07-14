@@ -2,7 +2,7 @@
 //  OneRoutine+CoreDataProperties.swift
 //  RoutineBuilder
 //
-//  Created by Ivy Nguyen on 7/13/21.
+//  Created by Ivy Nguyen on 7/14/21.
 //
 //
 
@@ -17,24 +17,24 @@ extension OneRoutine {
     }
 
     @NSManaged public var name: String?
-    @NSManaged public var routine: NSSet?
+    @NSManaged public var hasRoutineItems: NSSet?
 
 }
 
-// MARK: Generated accessors for routine
+// MARK: Generated accessors for hasRoutineItems
 extension OneRoutine {
 
-    @objc(addRoutineObject:)
-    @NSManaged public func addToRoutine(_ value: RoutineItem)
+    @objc(addHasRoutineItemsObject:)
+    @NSManaged public func addToHasRoutineItems(_ value: RoutineItem)
 
-    @objc(removeRoutineObject:)
-    @NSManaged public func removeFromRoutine(_ value: RoutineItem)
+    @objc(removeHasRoutineItemsObject:)
+    @NSManaged public func removeFromHasRoutineItems(_ value: RoutineItem)
 
-    @objc(addRoutine:)
-    @NSManaged public func addToRoutine(_ values: NSSet)
+    @objc(addHasRoutineItems:)
+    @NSManaged public func addToHasRoutineItems(_ values: NSSet)
 
-    @objc(removeRoutine:)
-    @NSManaged public func removeFromRoutine(_ values: NSSet)
+    @objc(removeHasRoutineItems:)
+    @NSManaged public func removeFromHasRoutineItems(_ values: NSSet)
 
 }
 

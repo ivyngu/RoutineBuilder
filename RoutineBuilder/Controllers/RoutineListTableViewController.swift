@@ -61,9 +61,10 @@ class RoutineListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let item = routinesCreated[indexPath.row]
-       
+        let vc = RoutineTableViewController(routine: item)
+        navigationController?.pushViewController(vc, animated: true)
     }
-        
+    
     func getAllItems() {
         do {
             routinesCreated = try context.fetch(OneRoutine.fetchRequest())
