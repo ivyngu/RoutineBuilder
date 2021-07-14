@@ -2,7 +2,7 @@
 //  RoutineItem+CoreDataProperties.swift
 //  RoutineBuilder
 //
-//  Created by Ivy Nguyen on 7/12/21.
+//  Created by Ivy Nguyen on 7/13/21.
 //
 //
 
@@ -15,9 +15,11 @@ extension RoutineItem {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<RoutineItem> {
         return NSFetchRequest<RoutineItem>(entityName: "RoutineItem")
     }
-    
-    @NSManaged public var name: String?
+
     @NSManaged public var duration: Int16
+    @NSManaged public var name: String?
+    @NSManaged public var belongsToRoutine: OneRoutine?
+
 }
 
 extension RoutineItem : Identifiable {
