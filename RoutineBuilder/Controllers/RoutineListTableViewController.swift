@@ -40,6 +40,7 @@ class RoutineListTableViewController: UITableViewController {
         let routineCreated = routinesCreated[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = routineCreated.name
+        cell.accessoryType = .disclosureIndicator
         return cell
     }
     

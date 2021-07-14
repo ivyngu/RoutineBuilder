@@ -28,6 +28,8 @@ class RoutineTableViewController: UITableViewController {
         getAllItems()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         self.navigationItem.rightBarButtonItems = [self.editButtonItem, UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAdd))]
+        self.navigationItem.title = routine.name
+        
     }
     
     @objc private func didTapAdd() {
@@ -38,12 +40,10 @@ class RoutineTableViewController: UITableViewController {
         alert.addTextField { (textField) in
             textField.placeholder = "Duration"
         }
-        
         let submitAction = UIAlertAction(title: "Submit", style: .cancel, handler: { [weak alert] _ in
             guard let textFields = alert?.textFields else {
                 return
             }
-            
             if let nameText = textFields[0].text,
                let durationText = textFields[1].text {
                 self.createItem(name: nameText, duration: Int16(durationText)!)
@@ -88,6 +88,8 @@ class RoutineTableViewController: UITableViewController {
             let alert = UIAlertController(title: "Edit", message: nil, preferredStyle: .alert)
             alert.addTextField(configurationHandler: nil)
             alert.textFields?.first?.text = item.name
+            alert.addTextField(configurationHandler: nil)
+            alert.textFields?[1].text = String(item.duration)
             alert.addAction(UIAlertAction(title: "Save", style: .cancel, handler: { [weak self] _ in
                 guard let field = alert.textFields?.first, let newName = field.text, !newName.isEmpty else {
                     return
@@ -113,7 +115,7 @@ class RoutineTableViewController: UITableViewController {
             getAllItems()
         }
         catch {
-            
+            newRoutineItem.duration = 0
         }
     }
     
