@@ -47,8 +47,7 @@ class RoutineTableViewController: UITableViewController {
             if let nameText = textFields[0].text,
                let durationText = textFields[1].text {
                 self.createItem(name: nameText, duration: Int16(durationText)!)
-            }
-        })
+    }})
         alert.addAction(submitAction)
         present(alert, animated: true)
     }
