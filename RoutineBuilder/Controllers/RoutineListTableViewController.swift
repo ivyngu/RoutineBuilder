@@ -18,6 +18,7 @@ class RoutineListTableViewController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAdd))
         self.navigationItem.leftBarButtonItem = self.editButtonItem
+        self.navigationController?.title = "My Routines"
     }
     
     @objc private func didTapAdd() {

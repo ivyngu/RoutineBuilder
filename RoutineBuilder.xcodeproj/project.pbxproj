@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2F6CA457269D1861002BD5F9 /* RoutineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6CA456269D1861002BD5F9 /* RoutineTableViewController.swift */; };
+		2F35529D26A344AB00B456D9 /* RoutineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F35529C26A344AB00B456D9 /* RoutineViewController.swift */; };
+		2F3552A026A3470C00B456D9 /* RoutineItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F35529E26A3470C00B456D9 /* RoutineItemTableViewCell.swift */; };
+		2F3552A126A3470C00B456D9 /* RoutineItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F35529F26A3470C00B456D9 /* RoutineItemTableViewCell.xib */; };
+		2F3552A326A34B1C00B456D9 /* RoutineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3552A226A34B1C00B456D9 /* RoutineTableViewController.swift */; };
 		2F6CA459269D18C5002BD5F9 /* RoutineListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6CA458269D18C5002BD5F9 /* RoutineListTableViewController.swift */; };
 		2F85FFBC269CCA1B00EF15BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F85FFBB269CCA1B00EF15BF /* AppDelegate.swift */; };
 		2F85FFBE269CCA1B00EF15BF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F85FFBD269CCA1B00EF15BF /* SceneDelegate.swift */; };
@@ -15,8 +18,6 @@
 		2F85FFC6269CCA1B00EF15BF /* RoutineBuilder.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2F85FFC4269CCA1B00EF15BF /* RoutineBuilder.xcdatamodeld */; };
 		2F85FFC8269CCA1D00EF15BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F85FFC7269CCA1D00EF15BF /* Assets.xcassets */; };
 		2F85FFCB269CCA1D00EF15BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F85FFC9269CCA1D00EF15BF /* LaunchScreen.storyboard */; };
-		2F9EF794269F4EB100B0996F /* RoutineItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9EF792269F4EB100B0996F /* RoutineItemTableViewCell.swift */; };
-		2F9EF795269F4EB200B0996F /* RoutineItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F9EF793269F4EB100B0996F /* RoutineItemTableViewCell.xib */; };
 		2F9EF797269F526700B0996F /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9EF796269F526700B0996F /* TimerViewController.swift */; };
 		2FD8BB5B269FCCA600A9A966 /* RoutineItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD8BB57269FCCA600A9A966 /* RoutineItem+CoreDataClass.swift */; };
 		2FD8BB5C269FCCA600A9A966 /* RoutineItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD8BB58269FCCA600A9A966 /* RoutineItem+CoreDataProperties.swift */; };
@@ -25,7 +26,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2F6CA456269D1861002BD5F9 /* RoutineTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTableViewController.swift; sourceTree = "<group>"; };
+		2F35529C26A344AB00B456D9 /* RoutineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineViewController.swift; sourceTree = "<group>"; };
+		2F35529E26A3470C00B456D9 /* RoutineItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineItemTableViewCell.swift; sourceTree = "<group>"; };
+		2F35529F26A3470C00B456D9 /* RoutineItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoutineItemTableViewCell.xib; sourceTree = "<group>"; };
+		2F3552A226A34B1C00B456D9 /* RoutineTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTableViewController.swift; sourceTree = "<group>"; };
 		2F6CA458269D18C5002BD5F9 /* RoutineListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineListTableViewController.swift; sourceTree = "<group>"; };
 		2F85FFB8269CCA1A00EF15BF /* RoutineBuilder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoutineBuilder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F85FFBB269CCA1B00EF15BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -35,8 +39,6 @@
 		2F85FFC7269CCA1D00EF15BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2F85FFCA269CCA1D00EF15BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2F85FFCC269CCA1D00EF15BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2F9EF792269F4EB100B0996F /* RoutineItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineItemTableViewCell.swift; sourceTree = "<group>"; };
-		2F9EF793269F4EB100B0996F /* RoutineItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoutineItemTableViewCell.xib; sourceTree = "<group>"; };
 		2F9EF796269F526700B0996F /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		2FD8BB57269FCCA600A9A966 /* RoutineItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RoutineItem+CoreDataClass.swift"; sourceTree = "<group>"; };
 		2FD8BB58269FCCA600A9A966 /* RoutineItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RoutineItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -124,8 +126,9 @@
 			isa = PBXGroup;
 			children = (
 				2F9EF796269F526700B0996F /* TimerViewController.swift */,
-				2F6CA456269D1861002BD5F9 /* RoutineTableViewController.swift */,
 				2F6CA458269D18C5002BD5F9 /* RoutineListTableViewController.swift */,
+				2F35529C26A344AB00B456D9 /* RoutineViewController.swift */,
+				2F3552A226A34B1C00B456D9 /* RoutineTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -152,8 +155,8 @@
 		2F9EF799269F54B500B0996F /* RoutineItem */ = {
 			isa = PBXGroup;
 			children = (
-				2F9EF792269F4EB100B0996F /* RoutineItemTableViewCell.swift */,
-				2F9EF793269F4EB100B0996F /* RoutineItemTableViewCell.xib */,
+				2F35529E26A3470C00B456D9 /* RoutineItemTableViewCell.swift */,
+				2F35529F26A3470C00B456D9 /* RoutineItemTableViewCell.xib */,
 			);
 			path = RoutineItem;
 			sourceTree = "<group>";
@@ -219,7 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F85FFCB269CCA1D00EF15BF /* LaunchScreen.storyboard in Resources */,
-				2F9EF795269F4EB200B0996F /* RoutineItemTableViewCell.xib in Resources */,
+				2F3552A126A3470C00B456D9 /* RoutineItemTableViewCell.xib in Resources */,
 				2F85FFC8269CCA1D00EF15BF /* Assets.xcassets in Resources */,
 				2F85FFC3269CCA1B00EF15BF /* Main.storyboard in Resources */,
 			);
@@ -237,10 +240,11 @@
 				2FD8BB5C269FCCA600A9A966 /* RoutineItem+CoreDataProperties.swift in Sources */,
 				2FD8BB5D269FCCA600A9A966 /* OneRoutine+CoreDataClass.swift in Sources */,
 				2F6CA459269D18C5002BD5F9 /* RoutineListTableViewController.swift in Sources */,
+				2F3552A026A3470C00B456D9 /* RoutineItemTableViewCell.swift in Sources */,
+				2F35529D26A344AB00B456D9 /* RoutineViewController.swift in Sources */,
 				2FD8BB5B269FCCA600A9A966 /* RoutineItem+CoreDataClass.swift in Sources */,
 				2F85FFBE269CCA1B00EF15BF /* SceneDelegate.swift in Sources */,
-				2F9EF794269F4EB100B0996F /* RoutineItemTableViewCell.swift in Sources */,
-				2F6CA457269D1861002BD5F9 /* RoutineTableViewController.swift in Sources */,
+				2F3552A326A34B1C00B456D9 /* RoutineTableViewController.swift in Sources */,
 				2FD8BB5E269FCCA600A9A966 /* OneRoutine+CoreDataProperties.swift in Sources */,
 				2F9EF797269F526700B0996F /* TimerViewController.swift in Sources */,
 			);

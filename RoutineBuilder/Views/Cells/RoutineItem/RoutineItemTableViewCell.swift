@@ -2,13 +2,21 @@
 //  RoutineItemTableViewCell.swift
 //  RoutineBuilder
 //
-//  Created by Ivy Nguyen on 7/14/21.
+//  Created by Ivy Nguyen on 7/17/21.
 //
 
 import UIKit
 
 class RoutineItemTableViewCell: UITableViewCell {
 
+    @IBOutlet var routineLabel: UILabel!
+    
+    static let identifier = "RoutineItemTableViewCell"
+    
+    static func nib() -> UINib {
+        return UINib(nibName: "RoutineItemTableViewCell", bundle: nil)
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
