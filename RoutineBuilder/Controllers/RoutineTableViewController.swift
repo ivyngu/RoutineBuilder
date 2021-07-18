@@ -29,7 +29,6 @@ class RoutineTableViewController: UITableViewController {
           tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
           self.navigationItem.rightBarButtonItems = [self.editButtonItem, UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAdd))]
           self.navigationItem.title = routine.name
-          
       }
       
       @objc private func didTapAdd() {

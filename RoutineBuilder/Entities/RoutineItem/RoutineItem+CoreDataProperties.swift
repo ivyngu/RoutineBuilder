@@ -2,7 +2,7 @@
 //  RoutineItem+CoreDataProperties.swift
 //  RoutineBuilder
 //
-//  Created by Ivy Nguyen on 7/14/21.
+//  Created by Ivy Nguyen on 7/17/21.
 //
 //
 
@@ -18,6 +18,7 @@ extension RoutineItem {
 
     @NSManaged public var duration: Int16
     @NSManaged public var name: String?
+    @NSManaged public var index: Int16
     @NSManaged public var belongsToRoutine: OneRoutine?
 
 }

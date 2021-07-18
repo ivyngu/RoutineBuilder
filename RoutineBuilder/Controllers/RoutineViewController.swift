@@ -7,7 +7,7 @@
 
 import UIKit
 
-/*
+
 class RoutineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet var tableView: UITableView!
@@ -15,7 +15,7 @@ class RoutineViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet var startButton: UIBarButtonItem!
     
     private var routineItems = [RoutineItem]()
-    private var routine: OneRoutine
+    // private var routine: OneRoutine
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     override func viewDidLoad() {
@@ -25,16 +25,7 @@ class RoutineViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.delegate = self
         tableView.dataSource = self
         self.navigationItem.rightBarButtonItems = [self.editButtonItem, UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAdd))]
-        self.navigationItem.title = routine.name
-    }
-    
-    init(routine: OneRoutine) {
-        self.routine = routine
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        // self.navigationItem.title = routine.name
     }
     
     @IBAction func startRoutineButtonTapped() {
@@ -116,8 +107,8 @@ class RoutineViewController: UIViewController, UITableViewDelegate, UITableViewD
         let newRoutineItem = RoutineItem(context: context)
         newRoutineItem.name = name
         newRoutineItem.duration = duration
-        newRoutineItem.belongsToRoutine = routine
-        routine.addToHasRoutineItems(newRoutineItem)
+        //newRoutineItem.belongsToRoutine = routine
+        //routine.addToHasRoutineItems(newRoutineItem)
         do {
             try context.save()
             getAllItems()
@@ -164,4 +155,3 @@ class RoutineViewController: UIViewController, UITableViewDelegate, UITableViewD
 
 
 }
- */
