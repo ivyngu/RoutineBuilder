@@ -31,8 +31,9 @@ class TimerViewController: UIViewController {
        
     private func loadTimer() {
         minutesRemaining = routineItems[index].durationMinutes
+        secondsRemaining = routineItems[index].durationSeconds
         countdownMinutesLabel.text = "\(routineItems[index].durationMinutes)"
-        countdownSecondsLabel.text = "\(secondsRemaining)"
+        countdownSecondsLabel.text = "\(routineItems[index].durationSeconds)"
         activityLabel.text = routineItems[index].name
         activeButton.setTitle("Start", for: .normal)
     }
@@ -55,25 +56,28 @@ class TimerViewController: UIViewController {
     }
        
     @objc func step() {
-        if secondsRemaining > 0 && minutesRemaining >= 0 {
+        if minutesRemaining > 0 || secondsRemaining > 0 {
             secondsRemaining -= 1
-        } else if secondsRemaining <= 0 && minutesRemaining > 0 {
-            secondsRemaining = 60
-            minutesRemaining -= 1
-        } else if index == routineItems.count - 1 {
+            if (secondsRemaining == -1) {
+                secondsRemaining = 59
+                minutesRemaining -= 1
+            }
+        } else {
             timer.invalidate()
-            let congratsAlert = UIAlertController(title: "Congrats!", message: "You finished your routine. Amazing work!", preferredStyle: .alert)
-            congratsAlert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: {_ in
-            self.navigationController?.pushViewController(RoutineListTableViewController(), animated: true)
-            }))
-            present(congratsAlert, animated: true)
-        } else if minutesRemaining == 0 && secondsRemaining == 0 {
-            timer.invalidate()
-            increaseIndex()
-            minutesRemaining = routineItems[index].durationMinutes
-            activityLabel.text = routineItems[index].name
-            activeButton.setTitle("Start", for: .normal)
-            timerOn.toggle()
+            if index == routineItems.count - 1 {
+                let congratsAlert = UIAlertController(title: "Congrats!", message: "You finished your routine. Amazing work!", preferredStyle: .alert)
+                congratsAlert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: {_ in
+                    self.storyboard?.instantiateInitialViewController()
+                }))
+                present(congratsAlert, animated: true)
+            } else {
+                increaseIndex()
+                minutesRemaining = routineItems[index].durationMinutes
+                secondsRemaining = routineItems[index].durationSeconds
+                activityLabel.text = routineItems[index].name
+                activeButton.setTitle("Start", for: .normal)
+                timerOn.toggle()
+            }
         }
         countdownSecondsLabel.text = "\(secondsRemaining)"
         countdownMinutesLabel.text = "\(minutesRemaining)"
