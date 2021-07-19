@@ -29,7 +29,14 @@ class RoutineTableViewController: UITableViewController {
           tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
           self.navigationItem.rightBarButtonItems = [self.editButtonItem, UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAdd))]
           self.navigationItem.title = routine.name
+        let startButton = UIBarButtonItem(title: "Start Timer", style: .plain, target: self, action: #selector(showTimer))
+        toolbarItems = [startButton]
+        self.navigationController?.isToolbarHidden = false
       }
+    
+    @objc func showTimer() {
+        navigationController?.pushViewController(TimerViewController(), animated: true)
+    }
 
       override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
           return routineItems.count
@@ -38,7 +45,7 @@ class RoutineTableViewController: UITableViewController {
       override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
           let routineItem = routineItems[indexPath.row]
           let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-          cell.textLabel?.text = routineItem.name
+        cell.textLabel?.text = "\(routineItem.name ?? "Item")" + ", " + "\(routineItem.durationMinutes)" + ":" + "\(routineItem.durationSeconds)"
           return cell
       }
       

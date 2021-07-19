@@ -127,6 +127,7 @@
 		2F85FFD3269CEDB000EF15BF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2F355CE526A5E0F60057C658 /* NewRoutineItemAlertViewController.swift */,
 				2F9EF796269F526700B0996F /* TimerViewController.swift */,
 				2F6CA458269D18C5002BD5F9 /* RoutineListTableViewController.swift */,
 				2F35529C26A344AB00B456D9 /* RoutineViewController.swift */,
@@ -139,7 +140,6 @@
 			isa = PBXGroup;
 			children = (
 				2F85FFC1269CCA1B00EF15BF /* Main.storyboard */,
-				2F355CE526A5E0F60057C658 /* NewRoutineItemAlertViewController.swift */,
 				2F9EF798269F54AD00B0996F /* Cells */,
 				2F85FFC9269CCA1D00EF15BF /* LaunchScreen.storyboard */,
 				2F85FFC7269CCA1D00EF15BF /* Assets.xcassets */,

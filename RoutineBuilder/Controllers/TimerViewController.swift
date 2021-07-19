@@ -22,7 +22,7 @@ class TimerViewController: UIViewController {
     private var minutesRemaining: Int16 = 0
     private var timer: Timer!
     private var timerOn: Bool = false
-       
+
     override func viewDidLoad() {
         super.viewDidLoad()
         getAllItems()
@@ -49,7 +49,7 @@ class TimerViewController: UIViewController {
         timerOn.toggle()
     }
        
-    func increaseIndex() {
+    private func increaseIndex() {
         if (index < routineItems.count) {
             index += 1
         }
@@ -83,7 +83,7 @@ class TimerViewController: UIViewController {
         countdownMinutesLabel.text = "\(minutesRemaining)"
     }
        
-    func getAllItems() {
+    private func getAllItems() {
         do {
             routineItems = try context.fetch(RoutineItem.fetchRequest())
             DispatchQueue.main.async {}
