@@ -11,8 +11,9 @@
 		2F3552A026A3470C00B456D9 /* RoutineItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F35529E26A3470C00B456D9 /* RoutineItemTableViewCell.swift */; };
 		2F3552A126A3470C00B456D9 /* RoutineItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F35529F26A3470C00B456D9 /* RoutineItemTableViewCell.xib */; };
 		2F3552A326A34B1C00B456D9 /* RoutineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3552A226A34B1C00B456D9 /* RoutineTableViewController.swift */; };
-		2F3552A626A368CE00B456D9 /* RoutineItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3552A426A368CE00B456D9 /* RoutineItem+CoreDataClass.swift */; };
-		2F3552A726A368CE00B456D9 /* RoutineItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3552A526A368CE00B456D9 /* RoutineItem+CoreDataProperties.swift */; };
+		2F355CE626A5E0F60057C658 /* NewRoutineItemAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F355CE526A5E0F60057C658 /* NewRoutineItemAlertViewController.swift */; };
+		2F355CE926A5F3640057C658 /* RoutineItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F355CE726A5F3640057C658 /* RoutineItem+CoreDataClass.swift */; };
+		2F355CEA26A5F3640057C658 /* RoutineItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F355CE826A5F3640057C658 /* RoutineItem+CoreDataProperties.swift */; };
 		2F6CA459269D18C5002BD5F9 /* RoutineListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6CA458269D18C5002BD5F9 /* RoutineListTableViewController.swift */; };
 		2F85FFBC269CCA1B00EF15BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F85FFBB269CCA1B00EF15BF /* AppDelegate.swift */; };
 		2F85FFBE269CCA1B00EF15BF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F85FFBD269CCA1B00EF15BF /* SceneDelegate.swift */; };
@@ -30,8 +31,9 @@
 		2F35529E26A3470C00B456D9 /* RoutineItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineItemTableViewCell.swift; sourceTree = "<group>"; };
 		2F35529F26A3470C00B456D9 /* RoutineItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoutineItemTableViewCell.xib; sourceTree = "<group>"; };
 		2F3552A226A34B1C00B456D9 /* RoutineTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTableViewController.swift; sourceTree = "<group>"; };
-		2F3552A426A368CE00B456D9 /* RoutineItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RoutineItem+CoreDataClass.swift"; sourceTree = "<group>"; };
-		2F3552A526A368CE00B456D9 /* RoutineItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RoutineItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2F355CE526A5E0F60057C658 /* NewRoutineItemAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRoutineItemAlertViewController.swift; sourceTree = "<group>"; };
+		2F355CE726A5F3640057C658 /* RoutineItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RoutineItem+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2F355CE826A5F3640057C658 /* RoutineItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RoutineItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2F6CA458269D18C5002BD5F9 /* RoutineListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineListTableViewController.swift; sourceTree = "<group>"; };
 		2F85FFB8269CCA1A00EF15BF /* RoutineBuilder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoutineBuilder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F85FFBB269CCA1B00EF15BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -60,8 +62,8 @@
 		2F6CA45E269D1BE9002BD5F9 /* RoutineItem */ = {
 			isa = PBXGroup;
 			children = (
-				2F3552A426A368CE00B456D9 /* RoutineItem+CoreDataClass.swift */,
-				2F3552A526A368CE00B456D9 /* RoutineItem+CoreDataProperties.swift */,
+				2F355CE726A5F3640057C658 /* RoutineItem+CoreDataClass.swift */,
+				2F355CE826A5F3640057C658 /* RoutineItem+CoreDataProperties.swift */,
 			);
 			path = RoutineItem;
 			sourceTree = "<group>";
@@ -137,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				2F85FFC1269CCA1B00EF15BF /* Main.storyboard */,
+				2F355CE526A5E0F60057C658 /* NewRoutineItemAlertViewController.swift */,
 				2F9EF798269F54AD00B0996F /* Cells */,
 				2F85FFC9269CCA1D00EF15BF /* LaunchScreen.storyboard */,
 				2F85FFC7269CCA1D00EF15BF /* Assets.xcassets */,
@@ -236,17 +239,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F85FFC6269CCA1B00EF15BF /* RoutineBuilder.xcdatamodeld in Sources */,
+				2F355CEA26A5F3640057C658 /* RoutineItem+CoreDataProperties.swift in Sources */,
 				2F85FFBC269CCA1B00EF15BF /* AppDelegate.swift in Sources */,
 				2FD8BB5D269FCCA600A9A966 /* OneRoutine+CoreDataClass.swift in Sources */,
 				2F6CA459269D18C5002BD5F9 /* RoutineListTableViewController.swift in Sources */,
-				2F3552A626A368CE00B456D9 /* RoutineItem+CoreDataClass.swift in Sources */,
+				2F355CE626A5E0F60057C658 /* NewRoutineItemAlertViewController.swift in Sources */,
 				2F3552A026A3470C00B456D9 /* RoutineItemTableViewCell.swift in Sources */,
 				2F35529D26A344AB00B456D9 /* RoutineViewController.swift in Sources */,
 				2F85FFBE269CCA1B00EF15BF /* SceneDelegate.swift in Sources */,
 				2F3552A326A34B1C00B456D9 /* RoutineTableViewController.swift in Sources */,
 				2FD8BB5E269FCCA600A9A966 /* OneRoutine+CoreDataProperties.swift in Sources */,
 				2F9EF797269F526700B0996F /* TimerViewController.swift in Sources */,
-				2F3552A726A368CE00B456D9 /* RoutineItem+CoreDataProperties.swift in Sources */,
+				2F355CE926A5F3640057C658 /* RoutineItem+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

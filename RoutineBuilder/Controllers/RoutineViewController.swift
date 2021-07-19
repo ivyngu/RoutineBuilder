@@ -11,13 +11,12 @@ import UIKit
 class RoutineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet var tableView: UITableView!
-    @IBOutlet var toolbar: UIToolbar!
-    @IBOutlet var startButton: UIBarButtonItem!
+    @IBOutlet var startButton: UIButton!
     
     private var routineItems = [RoutineItem]()
     // private var routine: OneRoutine
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         getAllItems()
@@ -30,26 +29,6 @@ class RoutineViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBAction func startRoutineButtonTapped() {
         navigationController?.pushViewController(TimerViewController(), animated: true)
-    }
-    
-    @objc private func didTapAdd() {
-        let alert = UIAlertController(title: "New Item", message: "Enter new item", preferredStyle: .alert)
-        alert.addTextField { (textField) in
-                    textField.placeholder = "Item Name"
-                }
-        alert.addTextField { (textField) in
-            textField.placeholder = "Duration"
-        }
-        let submitAction = UIAlertAction(title: "Submit", style: .cancel, handler: { [weak alert] _ in
-            guard let textFields = alert?.textFields else {
-                return
-            }
-            if let nameText = textFields[0].text,
-               let durationText = textFields[1].text {
-                self.createItem(name: nameText, duration: Int16(durationText)!)
-    } })
-        alert.addAction(submitAction)
-        present(alert, animated: true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -77,7 +56,7 @@ class RoutineViewController: UIViewController, UITableViewDelegate, UITableViewD
             deleteItem(item: item)
         }
     }
-    
+    /*
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let item = routineItems[indexPath.row]
@@ -102,11 +81,13 @@ class RoutineViewController: UIViewController, UITableViewDelegate, UITableViewD
         }))
         present(sheet, animated: true)
     }
+ */
     
-    func createItem(name: String, duration: Int16) {
+    func createItem(name: String, durationMinutes: Int16, durationSeconds: Int16) {
         let newRoutineItem = RoutineItem(context: context)
         newRoutineItem.name = name
-        newRoutineItem.duration = duration
+        newRoutineItem.durationMinutes = durationMinutes
+        newRoutineItem.durationSeconds = durationSeconds
         //newRoutineItem.belongsToRoutine = routine
         //routine.addToHasRoutineItems(newRoutineItem)
         do {
@@ -114,7 +95,6 @@ class RoutineViewController: UIViewController, UITableViewDelegate, UITableViewD
             getAllItems()
         }
         catch {
-            newRoutineItem.duration = 0
         }
     }
     
@@ -141,9 +121,10 @@ class RoutineViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
-    func updateItem(item: RoutineItem, newName: String, newDuration: Int16) {
+    func updateItem(item: RoutineItem, newName: String, newDurationMinutes: Int16, newDurationSeconds: Int16) {
         item.name = newName
-        item.duration = newDuration
+        item.durationMinutes = newDurationMinutes
+        item.durationSeconds = newDurationSeconds
         do {
             try context.save()
             getAllItems()
@@ -152,6 +133,26 @@ class RoutineViewController: UIViewController, UITableViewDelegate, UITableViewD
             
         }
     }
+}
 
-
+extension RoutineViewController: NewRoutineItemAlertDelegate {
+    
+    @objc func didTapAdd() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let alert = storyboard.instantiateViewController(identifier: "NewRoutineItemAlert") as! NewRoutineItemAlertViewController
+        alert.providesPresentationContextTransitionStyle = true
+        alert.definesPresentationContext = true
+        alert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        alert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        alert.delegate = self
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func alertCancel() {
+        storyboard?.instantiateInitialViewController()
+    }
+    
+    func itemCreated(name: String, minutes: Int16, seconds: Int16) {
+        self.createItem(name: name, durationMinutes: minutes, durationSeconds: seconds)
+    }
 }

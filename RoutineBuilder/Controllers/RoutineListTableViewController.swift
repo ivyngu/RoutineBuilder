@@ -63,6 +63,8 @@ class RoutineListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let item = routinesCreated[indexPath.row]
+        //let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        //let vc = storyboard.instantiateViewController(identifier: "RoutineViewController") as! RoutineViewController
         let vc = RoutineTableViewController(routine: item)
         navigationController?.pushViewController(vc, animated: true)
     }

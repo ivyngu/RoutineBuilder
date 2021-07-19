@@ -30,8 +30,8 @@ class TimerViewController: UIViewController {
     }
        
     private func loadTimer() {
-        minutesRemaining = routineItems[index].duration
-        countdownMinutesLabel.text = "\(routineItems[index].duration)"
+        minutesRemaining = routineItems[index].durationMinutes
+        countdownMinutesLabel.text = "\(routineItems[index].durationMinutes)"
         countdownSecondsLabel.text = "\(secondsRemaining)"
         activityLabel.text = routineItems[index].name
         activeButton.setTitle("Start", for: .normal)
@@ -70,7 +70,7 @@ class TimerViewController: UIViewController {
         } else if minutesRemaining == 0 && secondsRemaining == 0 {
             timer.invalidate()
             increaseIndex()
-            minutesRemaining = routineItems[index].duration
+            minutesRemaining = routineItems[index].durationMinutes
             activityLabel.text = routineItems[index].name
             activeButton.setTitle("Start", for: .normal)
             timerOn.toggle()
