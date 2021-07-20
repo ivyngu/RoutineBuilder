@@ -29,11 +29,10 @@ class NewRoutineItemAlertViewController: UIViewController {
         super.viewDidLoad()
         durationPicker.delegate = self
         durationPicker.dataSource = self
-
         cancelButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
         saveButton.addTarget(self, action: #selector(saveNewItem), for: .touchUpInside)
     }
-    
+        
     @objc func cancel() {
         delegate?.alertCancel()
         self.dismiss(animated: true, completion: nil)
@@ -49,7 +48,7 @@ class NewRoutineItemAlertViewController: UIViewController {
 extension NewRoutineItemAlertViewController: UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
         
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-            return 4
+        return 4
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {

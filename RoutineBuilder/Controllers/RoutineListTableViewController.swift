@@ -65,7 +65,8 @@ class RoutineListTableViewController: UITableViewController {
         let item = routinesCreated[indexPath.row]
         //let storyboard = UIStoryboard(name: "Main", bundle: nil)
         //let vc = storyboard.instantiateViewController(identifier: "RoutineViewController") as! RoutineViewController
-        let vc = RoutineTableViewController(routine: item)
+        let vc = RoutineTableViewController()
+        vc.routine = item
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -76,8 +77,8 @@ class RoutineListTableViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         }
-        catch {
-            //error
+        catch let err {
+            print(err)
         }
     }
     
@@ -88,8 +89,8 @@ class RoutineListTableViewController: UITableViewController {
             try context.save()
             getAllItems()
         }
-        catch {
-            
+        catch let err {
+            print(err)
         }
     }
     
@@ -99,8 +100,8 @@ class RoutineListTableViewController: UITableViewController {
             try context.save()
             getAllItems()
         }
-        catch {
-            
+        catch let err {
+            print(err)
         }
     }
     
@@ -110,8 +111,8 @@ class RoutineListTableViewController: UITableViewController {
             try context.save()
             getAllItems()
         }
-        catch {
-            
+        catch let err {
+            print(err)
         }
     }
 

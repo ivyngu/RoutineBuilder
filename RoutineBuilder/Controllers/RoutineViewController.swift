@@ -19,6 +19,7 @@ class RoutineViewController: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        clearData()
         getAllItems()
         tableView.register(RoutineItemTableViewCell.nib(), forCellReuseIdentifier: RoutineItemTableViewCell.identifier)
         tableView.delegate = self
@@ -30,13 +31,23 @@ class RoutineViewController: UIViewController {
         navigationController?.pushViewController(TimerViewController(), animated: true)
     }
     
+    func clearData() {
+        do {
+            routineItems = try context.fetch(RoutineItem.fetchRequest())
+            for routineItem in routineItems {
+                context.delete(routineItem)
+            }
+            
+        } catch let err {
+            print(err)
+        }
+    }
+    
     func createItem(name: String, durationMinutes: Int16, durationSeconds: Int16) {
         let newRoutineItem = RoutineItem(context: context)
         newRoutineItem.name = name
         newRoutineItem.durationMinutes = durationMinutes
         newRoutineItem.durationSeconds = durationSeconds
-        //newRoutineItem.belongsToRoutine = routine
-        //routine.addToHasRoutineItems(newRoutineItem)
         do {
             try context.save()
             getAllItems()
