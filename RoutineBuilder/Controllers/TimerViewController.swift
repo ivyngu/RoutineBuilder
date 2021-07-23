@@ -16,6 +16,8 @@ class TimerViewController: UIViewController {
        
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     private var routineItems = [RoutineItem]()
+    
+    var routine: OneRoutine?
 
     private var index = 0
     private var secondsRemaining: Int16 = 0
@@ -32,12 +34,20 @@ class TimerViewController: UIViewController {
     private func loadTimer() {
         minutesRemaining = routineItems[index].durationMinutes
         secondsRemaining = routineItems[index].durationSeconds
-        countdownMinutesLabel.text = "\(routineItems[index].durationMinutes)"
-        countdownSecondsLabel.text = "\(routineItems[index].durationSeconds)"
+        setTimerDurationFormat()
         activityLabel.text = routineItems[index].name
         activeButton.setTitle("Start", for: .normal)
     }
-       
+    
+    private func setTimerDurationFormat() {
+        if secondsRemaining < 10 {
+            countdownSecondsLabel.text = "0" + "\(secondsRemaining)"
+        } else {
+            countdownSecondsLabel.text = "\(secondsRemaining)"
+        }
+        countdownMinutesLabel.text = "\(minutesRemaining)"
+    }
+    
     @IBAction func playButtonTapped(_ sender: Any) {
         if !timerOn {
             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(step), userInfo: nil, repeats: true)
@@ -79,17 +89,11 @@ class TimerViewController: UIViewController {
                 timerOn.toggle()
             }
         }
-        countdownSecondsLabel.text = "\(secondsRemaining)"
-        countdownMinutesLabel.text = "\(minutesRemaining)"
+        setTimerDurationFormat()
     }
        
-    private func getAllItems() {
-        do {
-            routineItems = try context.fetch(RoutineItem.fetchRequest())
-            DispatchQueue.main.async {}
-        }
-        catch {
-            //error
-        }
+    func getAllItems() {
+        routineItems = routine?.hasRoutineItems?.allObjects as? [RoutineItem] ?? []
     }
+    
 }

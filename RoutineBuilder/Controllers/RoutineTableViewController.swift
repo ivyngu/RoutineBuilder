@@ -22,7 +22,6 @@ class RoutineTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getAllItems()
-        
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         self.navigationItem.rightBarButtonItems = [self.editButtonItem, UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAdd))]
         let startButton = UIBarButtonItem(title: "Start Timer", style: .plain, target: self, action: #selector(showTimer))
@@ -31,7 +30,10 @@ class RoutineTableViewController: UITableViewController {
     }
     
     @objc func showTimer() {
-        navigationController?.pushViewController(TimerViewController(), animated: true)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(identifier: "TimerViewController") as! TimerViewController
+        vc.routine = routine
+        present(vc, animated: true)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -41,14 +43,23 @@ class RoutineTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let routineItem = routineItems[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "\(routineItem.name ?? "Item")" + ", " + "\(routineItem.durationMinutes)" + ":" + "\(routineItem.durationSeconds)"
+        cell.textLabel?.text = "\(routineItem.name ?? "Item")" + ", " + "\(routineItem.durationMinutes)" + ":" + setSecondsTimerFormat(routineItem: routineItem)
         return cell
+    }
+    
+    private func setSecondsTimerFormat(routineItem: RoutineItem) -> String {
+        if routineItem.durationSeconds < 10 {
+             return "0" + "\(routineItem.durationSeconds)"
+        } else {
+            return "\(routineItem.durationSeconds)"
+        }
     }
       
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         let movedItem = routineItems[sourceIndexPath.row]
         routineItems.remove(at: sourceIndexPath.row)
         routineItems.insert(movedItem, at: destinationIndexPath.row)
+        updateIndex(itemMoved: movedItem, itemDisplaced: routineItems[destinationIndexPath.row], indexMoved: sourceIndexPath.row, indexDisplaced: destinationIndexPath.row)
     }
       
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -65,10 +76,15 @@ class RoutineTableViewController: UITableViewController {
         let item = routineItems[indexPath.row]
         let sheet = UIAlertController(title: "Options", message: nil, preferredStyle: .actionSheet)
         sheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        /*
         sheet.addAction(UIAlertAction(title: "Edit", style: .default, handler: { _ in
-            let alert = NewRoutineItemAlertViewController()
-            self.present(alert, animated: true)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+
+            let vc = storyboard.instantiateViewController(identifier: "NewRoutineItemAlertViewController") as! NewRoutineItemAlertViewController
+            vc.routineItem = item
+            self.navigationController?.pushViewController(vc, animated: true)
         }))
+ */
         sheet.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self] _ in
             self?.deleteItem(item: item)
         }))
@@ -81,6 +97,7 @@ class RoutineTableViewController: UITableViewController {
         newRoutineItem.durationMinutes = durationMinutes
         newRoutineItem.durationSeconds = durationSeconds
         routine?.addToHasRoutineItems(newRoutineItem)
+        newRoutineItem.index = Int16(routineItems.count - 1)
         do {
             try context.save()
             getAllItems()
@@ -115,6 +132,17 @@ class RoutineTableViewController: UITableViewController {
         do {
             try context.save()
             getAllItems()
+        }
+        catch let err {
+            print(err)
+        }
+    }
+    
+    func updateIndex(itemMoved: RoutineItem, itemDisplaced: RoutineItem, indexMoved: Int, indexDisplaced: Int) {
+        itemMoved.index = Int16(indexDisplaced)
+        itemDisplaced.index = Int16(indexMoved)
+        do {
+            try context.save()
         }
         catch let err {
             print(err)
