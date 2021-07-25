@@ -59,7 +59,7 @@ class RoutineTableViewController: UITableViewController {
         let movedItem = routineItems[sourceIndexPath.row]
         routineItems.remove(at: sourceIndexPath.row)
         routineItems.insert(movedItem, at: destinationIndexPath.row)
-        updateIndex(itemMoved: movedItem, itemDisplaced: routineItems[destinationIndexPath.row], indexMoved: sourceIndexPath.row, indexDisplaced: destinationIndexPath.row)
+        updateIndex()
     }
       
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -97,7 +97,7 @@ class RoutineTableViewController: UITableViewController {
         newRoutineItem.durationMinutes = durationMinutes
         newRoutineItem.durationSeconds = durationSeconds
         routine?.addToHasRoutineItems(newRoutineItem)
-        newRoutineItem.index = Int16(routineItems.count - 1)
+        newRoutineItem.index = Int16(routineItems.count)
         do {
             try context.save()
             getAllItems()
@@ -109,6 +109,9 @@ class RoutineTableViewController: UITableViewController {
     
     func getAllItems() {
         routineItems = routine?.hasRoutineItems?.allObjects as? [RoutineItem] ?? []
+        routineItems.sort {
+            $0.index < $1.index
+        }
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
@@ -138,9 +141,10 @@ class RoutineTableViewController: UITableViewController {
         }
     }
     
-    func updateIndex(itemMoved: RoutineItem, itemDisplaced: RoutineItem, indexMoved: Int, indexDisplaced: Int) {
-        itemMoved.index = Int16(indexDisplaced)
-        itemDisplaced.index = Int16(indexMoved)
+    func updateIndex() {
+        for (i, item) in zip(0..., routineItems) {
+            item.index = Int16(i)
+        }
         do {
             try context.save()
         }

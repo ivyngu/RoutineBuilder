@@ -94,6 +94,9 @@ class TimerViewController: UIViewController {
        
     func getAllItems() {
         routineItems = routine?.hasRoutineItems?.allObjects as? [RoutineItem] ?? []
+        routineItems.sort {
+            $0.index < $1.index
+        }
     }
     
 }
