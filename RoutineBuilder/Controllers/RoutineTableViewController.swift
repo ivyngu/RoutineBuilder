@@ -4,13 +4,14 @@
 //
 //  Created by Ivy Nguyen on 7/17/21.
 //
+//  Description: View Controller for assembling list of routine items within a single OneRoutine entity.
 
 import UIKit
 import CoreData
-import Foundation
 
 class RoutineTableViewController: UITableViewController {
     
+    // Attain context from CoreData and grab all RoutineItems created for a specific OneRoutine.
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     private var routineItems = [RoutineItem]()
     var routine: OneRoutine? {
@@ -19,13 +20,16 @@ class RoutineTableViewController: UITableViewController {
         }
     }
     
+    // Load the initial view after launching.
     override func viewDidLoad() {
         super.viewDidLoad()
         getAllItems()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         self.navigationItem.rightBarButtonItems = [self.editButtonItem, UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAdd))]
+        setTimerButton()
     }
     
+    // For making timer button appear on toolbar depending on whether there are RoutineItems to time or not.
     private func setTimerButton() {
         if routineItems.count > 0 {
             let startButton = UIBarButtonItem(title: "Start Timer", style: .plain, target: self, action: #selector(showTimer))
@@ -34,6 +38,7 @@ class RoutineTableViewController: UITableViewController {
         }
     }
     
+    // Launches TimerViewController when user presses on the Start Timer button.
     @objc func showTimer() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(identifier: "TimerViewController") as! TimerViewController
@@ -41,10 +46,12 @@ class RoutineTableViewController: UITableViewController {
         present(vc, animated: true)
     }
 
+    // Sets number of items in table.
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return routineItems.count
     }
 
+    // Assign each cell to a RoutineItem.
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let routineItem = routineItems[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
@@ -52,6 +59,7 @@ class RoutineTableViewController: UITableViewController {
         return cell
     }
     
+    // For formatting seconds label in each cell.
     private func setSecondsTimerFormat(routineItem: RoutineItem) -> String {
         if routineItem.durationSeconds < 10 {
              return "0" + "\(routineItem.durationSeconds)"
@@ -59,14 +67,16 @@ class RoutineTableViewController: UITableViewController {
             return "\(routineItem.durationSeconds)"
         }
     }
-      
+    
+    // For reordering RoutineItems in table while in editing mode.
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         let movedItem = routineItems[sourceIndexPath.row]
         routineItems.remove(at: sourceIndexPath.row)
         routineItems.insert(movedItem, at: destinationIndexPath.row)
         updateIndex()
     }
-      
+     
+    // For deleting RoutineItems in table while in editing mode.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         let item = routineItems[indexPath.row]
         if (editingStyle == .delete) {
@@ -76,6 +86,7 @@ class RoutineTableViewController: UITableViewController {
         }
     }
       
+    // When selecting a RoutineItem, show options of deleting it or changing its info.
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let item = routineItems[indexPath.row]
@@ -96,7 +107,8 @@ class RoutineTableViewController: UITableViewController {
         present(sheet, animated: true)
     }
       
-    func createItem(name: String, durationMinutes: Int16, durationSeconds: Int16) {
+    // Creates new RoutineItem in CoreData.
+    private func createItem(name: String, durationMinutes: Int16, durationSeconds: Int16) {
         let newRoutineItem = RoutineItem(context: context)
         newRoutineItem.name = name
         newRoutineItem.durationMinutes = durationMinutes
@@ -113,7 +125,8 @@ class RoutineTableViewController: UITableViewController {
         setTimerButton()
     }
     
-    func getAllItems() {
+    // Retrieves all RoutineItems within a OneRoutine in CoreData context & sorts them by index.
+    private func getAllItems() {
         routineItems = routine?.hasRoutineItems?.allObjects as? [RoutineItem] ?? []
         routineItems.sort {
             $0.index < $1.index
@@ -123,7 +136,8 @@ class RoutineTableViewController: UITableViewController {
         }
     }
     
-    func deleteItem(item: RoutineItem) {
+    // Deletes RoutineItem in CoreData.
+    private func deleteItem(item: RoutineItem) {
         context.delete(item)
         do {
             try context.save()
@@ -132,9 +146,11 @@ class RoutineTableViewController: UITableViewController {
         catch let err {
             print(err)
         }
+        setTimerButton()
     }
     
-    func updateItem(item: RoutineItem, newName: String, newDurationMinutes: Int16, newDurationSeconds: Int16) {
+    // Updates RoutineItem in CoreData.
+    private func updateItem(item: RoutineItem, newName: String, newDurationMinutes: Int16, newDurationSeconds: Int16) {
         item.name = newName
         item.durationMinutes = newDurationMinutes
         item.durationSeconds = newDurationSeconds
@@ -147,7 +163,8 @@ class RoutineTableViewController: UITableViewController {
         }
     }
     
-    func updateIndex() {
+    // Updates RoutineItem's index in CoreData.
+    private  func updateIndex() {
         for (i, item) in zip(0..., routineItems) {
             item.index = Int16(i)
         }
@@ -161,8 +178,10 @@ class RoutineTableViewController: UITableViewController {
 
 }
 
+// Conforms in order to show NewRoutineItemAlert when pressing on Add button.
 extension RoutineTableViewController: NewRoutineItemAlertDelegate {
     
+    // Shows NewRoutineItemAlert view when pressing add button.
     @objc func didTapAdd() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let alert = storyboard.instantiateViewController(identifier: "NewRoutineItemAlert") as! NewRoutineItemAlertViewController
@@ -174,10 +193,12 @@ extension RoutineTableViewController: NewRoutineItemAlertDelegate {
         present(alert, animated: true, completion: nil)
     }
     
+    // Goes back to original view controller if user hits cancel instead of creating new item.
     func alertCancel() {
         storyboard?.instantiateInitialViewController()
     }
     
+    // Creates new RoutineItem from info user entered on NewRoutineItemAlert view.
     func itemCreated(name: String, minutes: Int16, seconds: Int16) {
         self.createItem(name: name, durationMinutes: minutes, durationSeconds: seconds)
     }

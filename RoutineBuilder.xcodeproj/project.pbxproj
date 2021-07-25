@@ -11,6 +11,8 @@
 		2F355CE626A5E0F60057C658 /* NewRoutineItemAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F355CE526A5E0F60057C658 /* NewRoutineItemAlertViewController.swift */; };
 		2F355CE926A5F3640057C658 /* RoutineItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F355CE726A5F3640057C658 /* RoutineItem+CoreDataClass.swift */; };
 		2F355CEA26A5F3640057C658 /* RoutineItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F355CE826A5F3640057C658 /* RoutineItem+CoreDataProperties.swift */; };
+		2F49D8AE26ADE1E200BF02A5 /* OneRoutine+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49D8AC26ADE1E200BF02A5 /* OneRoutine+CoreDataClass.swift */; };
+		2F49D8AF26ADE1E200BF02A5 /* OneRoutine+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F49D8AD26ADE1E200BF02A5 /* OneRoutine+CoreDataProperties.swift */; };
 		2F6CA459269D18C5002BD5F9 /* RoutineListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6CA458269D18C5002BD5F9 /* RoutineListTableViewController.swift */; };
 		2F823A2826A8FC8F00D3CFCC /* RoutineItemInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F823A2726A8FC8F00D3CFCC /* RoutineItemInfoViewController.swift */; };
 		2F85FFBC269CCA1B00EF15BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F85FFBB269CCA1B00EF15BF /* AppDelegate.swift */; };
@@ -18,10 +20,7 @@
 		2F85FFC3269CCA1B00EF15BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F85FFC1269CCA1B00EF15BF /* Main.storyboard */; };
 		2F85FFC6269CCA1B00EF15BF /* RoutineBuilder.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2F85FFC4269CCA1B00EF15BF /* RoutineBuilder.xcdatamodeld */; };
 		2F85FFC8269CCA1D00EF15BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F85FFC7269CCA1D00EF15BF /* Assets.xcassets */; };
-		2F85FFCB269CCA1D00EF15BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F85FFC9269CCA1D00EF15BF /* LaunchScreen.storyboard */; };
 		2F9EF797269F526700B0996F /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9EF796269F526700B0996F /* TimerViewController.swift */; };
-		2FD8BB5D269FCCA600A9A966 /* OneRoutine+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD8BB59269FCCA600A9A966 /* OneRoutine+CoreDataClass.swift */; };
-		2FD8BB5E269FCCA600A9A966 /* OneRoutine+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD8BB5A269FCCA600A9A966 /* OneRoutine+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +28,8 @@
 		2F355CE526A5E0F60057C658 /* NewRoutineItemAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRoutineItemAlertViewController.swift; sourceTree = "<group>"; };
 		2F355CE726A5F3640057C658 /* RoutineItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RoutineItem+CoreDataClass.swift"; sourceTree = "<group>"; };
 		2F355CE826A5F3640057C658 /* RoutineItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RoutineItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2F49D8AC26ADE1E200BF02A5 /* OneRoutine+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OneRoutine+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2F49D8AD26ADE1E200BF02A5 /* OneRoutine+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OneRoutine+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2F6CA458269D18C5002BD5F9 /* RoutineListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineListTableViewController.swift; sourceTree = "<group>"; };
 		2F823A2726A8FC8F00D3CFCC /* RoutineItemInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineItemInfoViewController.swift; sourceTree = "<group>"; };
 		2F85FFB8269CCA1A00EF15BF /* RoutineBuilder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoutineBuilder.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -37,11 +38,8 @@
 		2F85FFC2269CCA1B00EF15BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2F85FFC5269CCA1B00EF15BF /* RoutineBuilder.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RoutineBuilder.xcdatamodel; sourceTree = "<group>"; };
 		2F85FFC7269CCA1D00EF15BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2F85FFCA269CCA1D00EF15BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2F85FFCC269CCA1D00EF15BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F9EF796269F526700B0996F /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
-		2FD8BB59269FCCA600A9A966 /* OneRoutine+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OneRoutine+CoreDataClass.swift"; sourceTree = "<group>"; };
-		2FD8BB5A269FCCA600A9A966 /* OneRoutine+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OneRoutine+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,8 +65,8 @@
 		2F73367F269DEEA30027850E /* OneRoutine */ = {
 			isa = PBXGroup;
 			children = (
-				2FD8BB59269FCCA600A9A966 /* OneRoutine+CoreDataClass.swift */,
-				2FD8BB5A269FCCA600A9A966 /* OneRoutine+CoreDataProperties.swift */,
+				2F49D8AC26ADE1E200BF02A5 /* OneRoutine+CoreDataClass.swift */,
+				2F49D8AD26ADE1E200BF02A5 /* OneRoutine+CoreDataProperties.swift */,
 			);
 			path = OneRoutine;
 			sourceTree = "<group>";
@@ -136,7 +134,6 @@
 			isa = PBXGroup;
 			children = (
 				2F85FFC1269CCA1B00EF15BF /* Main.storyboard */,
-				2F85FFC9269CCA1D00EF15BF /* LaunchScreen.storyboard */,
 				2F85FFC7269CCA1D00EF15BF /* Assets.xcassets */,
 			);
 			path = Views;
@@ -202,7 +199,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F85FFCB269CCA1D00EF15BF /* LaunchScreen.storyboard in Resources */,
 				2F85FFC8269CCA1D00EF15BF /* Assets.xcassets in Resources */,
 				2F85FFC3269CCA1B00EF15BF /* Main.storyboard in Resources */,
 			);
@@ -218,12 +214,12 @@
 				2F85FFC6269CCA1B00EF15BF /* RoutineBuilder.xcdatamodeld in Sources */,
 				2F355CEA26A5F3640057C658 /* RoutineItem+CoreDataProperties.swift in Sources */,
 				2F85FFBC269CCA1B00EF15BF /* AppDelegate.swift in Sources */,
-				2FD8BB5D269FCCA600A9A966 /* OneRoutine+CoreDataClass.swift in Sources */,
 				2F6CA459269D18C5002BD5F9 /* RoutineListTableViewController.swift in Sources */,
+				2F49D8AE26ADE1E200BF02A5 /* OneRoutine+CoreDataClass.swift in Sources */,
+				2F49D8AF26ADE1E200BF02A5 /* OneRoutine+CoreDataProperties.swift in Sources */,
 				2F355CE626A5E0F60057C658 /* NewRoutineItemAlertViewController.swift in Sources */,
 				2F85FFBE269CCA1B00EF15BF /* SceneDelegate.swift in Sources */,
 				2F3552A326A34B1C00B456D9 /* RoutineTableViewController.swift in Sources */,
-				2FD8BB5E269FCCA600A9A966 /* OneRoutine+CoreDataProperties.swift in Sources */,
 				2F9EF797269F526700B0996F /* TimerViewController.swift in Sources */,
 				2F823A2826A8FC8F00D3CFCC /* RoutineItemInfoViewController.swift in Sources */,
 				2F355CE926A5F3640057C658 /* RoutineItem+CoreDataClass.swift in Sources */,
@@ -239,14 +235,6 @@
 				2F85FFC2269CCA1B00EF15BF /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		2F85FFC9269CCA1D00EF15BF /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2F85FFCA269CCA1D00EF15BF /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

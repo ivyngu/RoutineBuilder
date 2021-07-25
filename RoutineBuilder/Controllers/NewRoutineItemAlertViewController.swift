@@ -7,24 +7,30 @@
 
 import UIKit
 
+// For implementing NewRoutineItemAlert class.
 protocol NewRoutineItemAlertDelegate: AnyObject {
     func itemCreated(name: String, minutes: Int16, seconds: Int16)
     func alertCancel()
 }
 
+// View Controller for NewRoutineItemAlert when user creates new RoutineItem for a specific OneRoutine.
 class NewRoutineItemAlertViewController: UIViewController {
     
+    // Set variables for storyboard outlet.
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var durationPicker: UIPickerView!
     
+    // Declare delegate for calling & separating actions.
     var delegate: NewRoutineItemAlertDelegate?
     
+    // Set variables for pickerView.
     var minutes = Array(0...120)
     var seconds = Array(0...60)
         
+    // Launches initial view after loading.
     override func viewDidLoad() {
         super.viewDidLoad()
         durationPicker.delegate = self
@@ -33,11 +39,14 @@ class NewRoutineItemAlertViewController: UIViewController {
         saveButton.addTarget(self, action: #selector(saveNewItem), for: .touchUpInside)
     }
         
+    // When user presses cancel button, dismiss the view.
     @objc func cancel() {
         delegate?.alertCancel()
         self.dismiss(animated: true, completion: nil)
     }
     
+    // When user saves new item, use the selected durations in pickerView & name in textfield to create
+    // new RoutineItem.
     @objc func saveNewItem() {
         delegate?.itemCreated(name: nameField.text ?? "Item", minutes: Int16(minutes[durationPicker.selectedRow(inComponent: 0)]), seconds: Int16(seconds[durationPicker.selectedRow(inComponent: 2)]))
         self.dismiss(animated: true, completion: nil)

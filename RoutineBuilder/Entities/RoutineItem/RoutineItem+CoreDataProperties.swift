@@ -16,9 +16,9 @@ extension RoutineItem {
         return NSFetchRequest<RoutineItem>(entityName: "RoutineItem")
     }
 
-    @NSManaged public var durationMinutes: Int16
     @NSManaged public var index: Int16
     @NSManaged public var name: String?
+    @NSManaged public var durationMinutes: Int16
     @NSManaged public var durationSeconds: Int16
     @NSManaged public var belongsToRoutine: OneRoutine?
 

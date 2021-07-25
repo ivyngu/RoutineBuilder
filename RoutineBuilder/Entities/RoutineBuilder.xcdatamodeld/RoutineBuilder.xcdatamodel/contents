@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20F71" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="OneRoutine" representedClassName="OneRoutine" syncable="YES">
+        <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="hasRoutineItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RoutineItem" inverseName="belongsToRoutine" inverseEntity="RoutineItem"/>
     </entity>
@@ -12,7 +13,7 @@
         <relationship name="belongsToRoutine" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="OneRoutine" inverseName="hasRoutineItems" inverseEntity="OneRoutine"/>
     </entity>
     <elements>
-        <element name="OneRoutine" positionX="-63" positionY="0" width="128" height="59"/>
+        <element name="OneRoutine" positionX="-63" positionY="0" width="128" height="74"/>
         <element name="RoutineItem" positionX="-63" positionY="-18" width="128" height="104"/>
     </elements>
 </model>

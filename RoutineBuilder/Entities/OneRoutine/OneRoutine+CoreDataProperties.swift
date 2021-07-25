@@ -2,7 +2,7 @@
 //  OneRoutine+CoreDataProperties.swift
 //  RoutineBuilder
 //
-//  Created by Ivy Nguyen on 7/14/21.
+//  Created by Ivy Nguyen on 7/25/21.
 //
 //
 
@@ -17,6 +17,7 @@ extension OneRoutine {
     }
 
     @NSManaged public var name: String?
+    @NSManaged public var index: Int16
     @NSManaged public var hasRoutineItems: NSSet?
 
 }

@@ -84,4 +84,10 @@ extension RoutineItemInfoViewController: UIPickerViewDelegate, UIPickerViewDataS
         return ""
     }
     
+    /*
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        <#code#>
+    }
+ */
+    
 }
