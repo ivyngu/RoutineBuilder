@@ -24,9 +24,14 @@ class RoutineTableViewController: UITableViewController {
         getAllItems()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         self.navigationItem.rightBarButtonItems = [self.editButtonItem, UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAdd))]
-        let startButton = UIBarButtonItem(title: "Start Timer", style: .plain, target: self, action: #selector(showTimer))
-        toolbarItems = [startButton]
-        self.navigationController?.isToolbarHidden = false
+    }
+    
+    private func setTimerButton() {
+        if routineItems.count > 0 {
+            let startButton = UIBarButtonItem(title: "Start Timer", style: .plain, target: self, action: #selector(showTimer))
+            toolbarItems = [startButton]
+            self.navigationController?.isToolbarHidden = false
+        }
     }
     
     @objc func showTimer() {
@@ -105,6 +110,7 @@ class RoutineTableViewController: UITableViewController {
         catch let err {
             print(err)
         }
+        setTimerButton()
     }
     
     func getAllItems() {
