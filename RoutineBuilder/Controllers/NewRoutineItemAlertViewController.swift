@@ -51,7 +51,6 @@ class NewRoutineItemAlertViewController: UIViewController {
         delegate?.itemCreated(name: nameField.text ?? "Item", minutes: Int16(minutes[durationPicker.selectedRow(inComponent: 0)]), seconds: Int16(seconds[durationPicker.selectedRow(inComponent: 2)]))
         self.dismiss(animated: true, completion: nil)
     }
-    
 }
 
 extension NewRoutineItemAlertViewController: UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {

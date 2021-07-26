@@ -113,5 +113,4 @@ class TimerViewController: UIViewController {
             $0.index < $1.index
         }
     }
-    
 }

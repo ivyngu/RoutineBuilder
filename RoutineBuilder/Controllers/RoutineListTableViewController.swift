@@ -77,7 +77,6 @@ class RoutineListTableViewController: UITableViewController {
         let vc = RoutineTableViewController()
         vc.routine = item
         navigationController?.pushViewController(vc, animated: true)
-        
     }
     
     // Get all OneRoutine items created from CoreData context.

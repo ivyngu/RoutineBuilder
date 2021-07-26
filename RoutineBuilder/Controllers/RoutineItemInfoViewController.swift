@@ -7,31 +7,37 @@
 
 import UIKit
 
+// For implementing RoutineItemInfoViewController class.
 protocol RoutineItemInfoDelegate: AnyObject {
     func itemUpdated(item: RoutineItem, name: String, minutes: Int16, seconds: Int16)
     func alertCancel()
 }
 
+// View Controller for RoutineItemInfo when user updates RoutineItem for a specific OneRoutine.
 class RoutineItemInfoViewController: UIViewController {
 
+    // Set variables for storyboard outlet.
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var secondsField: UITextField!
     @IBOutlet weak var minutesField: UITextField!
-    
     let minutePicker = UIPickerView()
     let secondPicker = UIPickerView()
     
+    // Declare delegate for calling & separating actions.
     var delegate: RoutineItemInfoDelegate?
-        
+      
+    // Set variables for pickerView.
     var minutes = Array(0...120)
     var seconds = Array(0...60)
     
+    // Launches initial view after loading.
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var routineItem: RoutineItem?
     
+    // Launches initial view after loading.
     override func viewDidLoad() {
         super.viewDidLoad()
         setInitialFields()
@@ -40,12 +46,14 @@ class RoutineItemInfoViewController: UIViewController {
         saveButton.addTarget(self, action: #selector(updateOldItem), for: .touchUpInside)
     }
     
+    // Initial settings for fields (old durations for RoutineItem).
     private func setInitialFields() {
         nameField.text = routineItem?.name
         minutesField.text = "\(routineItem?.durationMinutes ?? 0)"
         secondsField.text = "\(routineItem?.durationSeconds ?? 0)"
     }
     
+    // Properties for pickerViews.
     private func assignPickerSettings() {
         minutePicker.tag = 0
         secondPicker.tag = 1
@@ -55,16 +63,17 @@ class RoutineItemInfoViewController: UIViewController {
         secondPicker.delegate = self
     }
     
+    // When user presses cancel button, dismiss the view.
     @objc func cancel() {
         delegate?.alertCancel()
         self.dismiss(animated: true, completion: nil)
     }
     
+    // When user updates item, use the selected durations in pickerView & name in textfield to update RoutineItem.
     @objc func updateOldItem() {
         delegate?.itemUpdated(item: routineItem ?? RoutineItem(), name: nameField.text ?? "Item", minutes: Int16(minutes[minutePicker.selectedRow(inComponent: 0)]), seconds: Int16(seconds[secondPicker.selectedRow(inComponent: 0)]))
         self.dismiss(animated: true, completion: nil)
     }
-
 }
 
 extension RoutineItemInfoViewController: UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
