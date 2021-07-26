@@ -92,15 +92,17 @@ class RoutineTableViewController: UITableViewController {
         let item = routineItems[indexPath.row]
         let sheet = UIAlertController(title: "Options", message: nil, preferredStyle: .actionSheet)
         sheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        /*
         sheet.addAction(UIAlertAction(title: "Edit", style: .default, handler: { _ in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-
-            let vc = storyboard.instantiateViewController(identifier: "NewRoutineItemAlertViewController") as! NewRoutineItemAlertViewController
+            let vc = storyboard.instantiateViewController(identifier: "RoutineItemInfoViewController") as! RoutineItemInfoViewController
             vc.routineItem = item
-            self.navigationController?.pushViewController(vc, animated: true)
+            vc.providesPresentationContextTransitionStyle = true
+            vc.definesPresentationContext = true
+            vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+            vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+            vc.delegate = self
+            self.present(vc, animated: true)
         }))
- */
         sheet.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self] _ in
             self?.deleteItem(item: item)
         }))
@@ -201,5 +203,14 @@ extension RoutineTableViewController: NewRoutineItemAlertDelegate {
     // Creates new RoutineItem from info user entered on NewRoutineItemAlert view.
     func itemCreated(name: String, minutes: Int16, seconds: Int16) {
         self.createItem(name: name, durationMinutes: minutes, durationSeconds: seconds)
+    }
+}
+
+// Conforms in order to show RoutineItemInfoViewController when pressing on Edit button for an individual routine item.
+extension RoutineTableViewController: RoutineItemInfoDelegate {
+    
+    // Updates RoutineItem from info user entered on RoutineItemInfo view.
+    func itemUpdated(item: RoutineItem, name: String, minutes: Int16, seconds: Int16) {
+        self.updateItem(item: item, newName: name, newDurationMinutes: minutes, newDurationSeconds: seconds)
     }
 }

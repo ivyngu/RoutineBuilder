@@ -8,7 +8,7 @@
 import UIKit
 
 protocol RoutineItemInfoDelegate: AnyObject {
-    func itemUpdated(name: String, minutes: Int16, seconds: Int16)
+    func itemUpdated(item: RoutineItem, name: String, minutes: Int16, seconds: Int16)
     func alertCancel()
 }
 
@@ -18,7 +18,11 @@ class RoutineItemInfoViewController: UIViewController {
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var nameField: UITextField!
-    @IBOutlet weak var durationPicker: UIPickerView!
+    @IBOutlet weak var secondsField: UITextField!
+    @IBOutlet weak var minutesField: UITextField!
+    
+    let minutePicker = UIPickerView()
+    let secondPicker = UIPickerView()
     
     var delegate: RoutineItemInfoDelegate?
         
@@ -30,19 +34,34 @@ class RoutineItemInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        durationPicker.delegate = self
-        durationPicker.dataSource = self
+        setInitialFields()
+        assignPickerSettings()
         cancelButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
-        saveButton.addTarget(self, action: #selector(updateItem), for: .touchUpInside)
+        saveButton.addTarget(self, action: #selector(updateOldItem), for: .touchUpInside)
     }
-        
+    
+    private func setInitialFields() {
+        nameField.text = routineItem?.name
+        minutesField.text = "\(routineItem?.durationMinutes ?? 0)"
+        secondsField.text = "\(routineItem?.durationSeconds ?? 0)"
+    }
+    
+    private func assignPickerSettings() {
+        minutePicker.tag = 0
+        secondPicker.tag = 1
+        secondsField.inputView = secondPicker
+        minutesField.inputView = minutePicker
+        minutePicker.delegate = self
+        secondPicker.delegate = self
+    }
+    
     @objc func cancel() {
         delegate?.alertCancel()
         self.dismiss(animated: true, completion: nil)
     }
     
-    @objc func updateItem() {
-        delegate?.itemUpdated(name: nameField.text ?? "Item", minutes: Int16(minutes[durationPicker.selectedRow(inComponent: 0)]), seconds: Int16(seconds[durationPicker.selectedRow(inComponent: 2)]))
+    @objc func updateOldItem() {
+        delegate?.itemUpdated(item: routineItem ?? RoutineItem(), name: nameField.text ?? "Item", minutes: Int16(minutes[minutePicker.selectedRow(inComponent: 0)]), seconds: Int16(seconds[secondPicker.selectedRow(inComponent: 0)]))
         self.dismiss(animated: true, completion: nil)
     }
 
@@ -50,44 +69,45 @@ class RoutineItemInfoViewController: UIViewController {
 
 extension RoutineItemInfoViewController: UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
-    func showInitialTextField(_ textField: UITextField) {
-        textField.text = routineItem?.name
-    }
-    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 4
+        return 2
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if component == 0 {
-            return minutes.count
-        } else if component == 1 {
-            return 1
-        } else if component == 2 {
-            return seconds.count
-        } else if component == 3 {
-            return 1
+        if pickerView.tag == 0 {
+            if component == 0 {
+                return minutes.count
+            } else if component == 1 {
+                return 1
+            }
+        }
+        if pickerView.tag == 1 {
+            if component == 0 {
+                return seconds.count
+            } else if component == 1 {
+                return 1
+            }
         }
         return 0
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if component == 0 {
-            return String(minutes[row])
-        } else if component == 1 {
-            return "m"
-        } else if component == 2 {
-            return String(seconds[row])
-        } else if component == 3 {
-            return "s"
+        if pickerView.tag == 0{
+            if component == 0 {
+                //minutesField.text = String(minutes[row])
+                return String(minutes[row])
+            } else if component == 1 {
+                return "m"
+            }
+        }
+        if pickerView.tag == 1 {
+            if component == 0 {
+                //secondsField.text = String(seconds[row])
+                return String(seconds[row])
+            } else if component == 1 {
+                return "s"
+            }
         }
         return ""
     }
-    
-    /*
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        <#code#>
-    }
- */
-    
 }
